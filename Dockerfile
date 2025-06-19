@@ -1,9 +1,8 @@
 FROM ghcr.io/msys2/msys2:base
 
-Update system twice to avoid partial upgrades
+Update system to avoid partial upgrades
 
-RUN pacman -Syu --noconfirm && 
-pacman -Syu --noconfirm
+RUN pacman -Syu --noconfirm
 
 Install MINGW64 toolchain and common dev tools
 
