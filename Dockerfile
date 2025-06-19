@@ -1,17 +1,21 @@
-FROM msys2/msys2:latest
+FROM ghcr.io/msys2/msys2:base
 
-# System update (run twice for full sync)
-RUN pacman -Syu --noconfirm && \
-    pacman -Syu --noconfirm
+Update system twice to avoid partial upgrades
 
-# Install MINGW64 toolchain and essential packages
-RUN pacman -S --noconfirm \
-    mingw-w64-x86_64-toolchain \
-    mingw-w64-x86_64-make \
-    mingw-w64-x86_64-cmake \
-    mingw-w64-x86_64-python \
-    mingw-w64-x86_64-git \
-    zip unzip vim
+RUN pacman -Syu --noconfirm && 
+pacman -Syu --noconfirm
 
-# Default to MINGW64 environment
+Install MINGW64 toolchain and common dev tools
+
+RUN pacman -S --noconfirm 
+mingw-w64-x86_64-toolchain 
+mingw-w64-x86_64-cmake 
+mingw-w64-x86_64-make 
+mingw-w64-x86_64-python 
+mingw-w64-x86_64-git 
+zip unzip vim
+
+Default command: bash shell in login mode
+
 CMD ["/usr/bin/bash", "-l"]
+
