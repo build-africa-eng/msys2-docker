@@ -1,4 +1,4 @@
-FROM ghcr.io/msys2/msys2:base
+FROM msys2/msys2:20240501
 
 # Update system to avoid partial upgrades
 RUN pacman -Syu --noconfirm
