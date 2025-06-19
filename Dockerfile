@@ -1,9 +1,9 @@
-FROM msys2/msys2:20240501
+FROM ghcr.io/msys2/msys2-docker-experimental
 
-# Update system to avoid partial upgrades
+# Update MSYS2 packages
 RUN pacman -Syu --noconfirm
 
-# Install MINGW64 toolchain and common dev tools
+# Install dev tools
 RUN pacman -S --noconfirm \
     mingw-w64-x86_64-toolchain \
     mingw-w64-x86_64-cmake \
@@ -12,5 +12,5 @@ RUN pacman -S --noconfirm \
     mingw-w64-x86_64-git \
     zip unzip vim
 
-# Default command: bash shell in login mode
+# Set bash as default shell
 CMD ["/usr/bin/bash", "-l"]
